@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import logo from '../assets/logo.png'
+import player from '../assets/player.png'
 
 export default class LoaderScene extends Phaser.Scene {
 	constructor() {
@@ -7,7 +8,12 @@ export default class LoaderScene extends Phaser.Scene {
 	}
 	preload() {
 		this.load.image('logo', logo)
+		this.load.image('player', player)
 		this.matter.enableCollisionEventsPlugin()
+
+		this.load.once('complete', () => {
+			this.scene.start('AdventureScene')
+		})
 	}
 
 	create() {
