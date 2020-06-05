@@ -1,0 +1,11 @@
+{
+  "name": "@commander-lol/mashup-jam-202",
+  "version": "1.0.0",
+  "description": "Mashup Jam ~ Size Matters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Louis Capitanchik <contact@louiscap.co>",
+  "license": "GPL-3.0+"
+}
