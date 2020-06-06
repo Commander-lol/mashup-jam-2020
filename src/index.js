@@ -10,6 +10,7 @@ class Game extends Phaser.Game {
 			...config,
 			scene: scenes,
 		})
+
 	}
 }
 
