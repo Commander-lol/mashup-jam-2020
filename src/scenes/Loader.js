@@ -50,9 +50,9 @@ export default class LoaderScene extends Phaser.Scene {
 		this.anims.create( {
 			key: 'soul-idle',
 			frames: this.anims.generateFrameNumbers('entities', {
-				frames: [11, 12]
+				frames: [21, 22, 23, 24]
 			}),
-			frameRate: 10,
+			frameRate: 6,
 			repeat: -1,
 		})
 	}

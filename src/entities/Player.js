@@ -31,6 +31,8 @@ export default class Player extends Entity {
 			}),
 		}
 
+		this.souls = 0
+
 		this.createPhysics()
 
 		this.sprite.setExistingBody(this.bodies.compound)
@@ -51,6 +53,16 @@ export default class Player extends Entity {
 		}
 
 		this.ctx.matter.world.on('beforeupdate', this.beforePhysicsUpdates, this)
+
+		this.emitterManager = this.ctx.add.particles('pixel')
+		this.emitter = this.emitterManager.createEmitter({
+			lifespan: 0,
+			angle: () => -85 - (Math.random() * 10),
+			tint: 0x9a4f50,
+			gravityY: 10,
+			gravityX: 10,
+			follow: this.sprite
+		})
 
 		this.ctx.matterCollision.addOnCollideStart({
 			objectA: Object.values(this.sensors),
@@ -89,7 +101,7 @@ export default class Player extends Entity {
 		const { width, height } = this.sprite
 
 		this.bodies = {
-			main: Bodies.rectangle(width / 2, height / 2 + 1, width - 8, height - 4, ),
+			main: Bodies.rectangle(width / 2, height / 2 + 1, width - 8, height - 4, { label: 'player_body' }),
 		}
 		this.sensors = {
 			bottom: Bodies.rectangle(width / 2, height, width * 0.25, 2, { isSensor: true }),
@@ -109,9 +121,19 @@ export default class Player extends Entity {
 			friction: 0.8,
 			restitution: 0,
 
+
 		})
 
 		this.collisions = Player.DefaultCollisions
+	}
+
+	/**
+	 * @param {number} amount
+	 */
+	getSouls(amount) {
+		console.log("Scoring souls")
+		this.souls += amount
+		this.emitter.setLifespan(this.souls * 10)
 	}
 
 	update() {

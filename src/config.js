@@ -7,6 +7,7 @@ export default {
 	width: 960,
 	height: 800,
 	backgroundColor: '#c5ccb8',
+	// backgroundColor: '#7e9e99',
 	localStorageName: 'mashup_jam_2020',
 	pixelArt: true,
 	plugins: {

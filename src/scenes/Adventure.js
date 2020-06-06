@@ -19,7 +19,7 @@ export default class AdventureScene extends Phaser.Scene {
 
 		this.player = new Player(this, this.spawn.x, this.spawn.y)
 		this.souls = map.getObjectLayer('souls').objects.map(obj => {
-			return new Soul(this, obj.x, obj.y, obj.properties.value)
+			return new Soul(this, obj.x, obj.y, obj.properties.find(p => p.name === 'value').value)
 		})
 
 		this.cameras.main.startFollow(this.player.sprite, false, 0.5, 0.5)
@@ -27,5 +27,16 @@ export default class AdventureScene extends Phaser.Scene {
 
 		this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 		this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+	}
+
+	/**
+	 *
+	 * @param {Soul} soul
+	 */
+	scorePoints(soul) {
+		console.log("GETTING", soul.value)
+		this.player.getSouls(soul.value)
+		soul.destroy()
+
 	}
 }
