@@ -6,12 +6,13 @@ export default {
 	width: 800,
 	height: 600,
 	localStorageName: 'mashup_jam_2020',
+	pixelArt: true,
 	physics: {
 		default: 'matter',
 		matter: {
 			// debug: true,
 			gravity: {
-				scale: 0,
+				y: 1,
 			},
 		},
 	},
