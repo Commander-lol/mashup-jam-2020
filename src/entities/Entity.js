@@ -8,13 +8,26 @@ export default class Entity {
 	constructor(context) {
 		this.ctx = context
 		context.events.on('update', this.update, this)
+		context.events.once("shutdown", this.destroy, this);
+		context.events.once("destroy", this.destroy, this);
 	}
 
-	update() {
-
+	_onUpdate() {
+		if (!this.dead) {
+			this.update()
+		}
 	}
 
-	destroy() {
+	_onDestroy() {
 		this.dead = true
+		this.ctx.events.off('update', this._onUpdate, this)
+		this.ctx.events.off('shutdown', this._onDestroy, this)
+		this.ctx.events.off('destroy', this._onDestroy, this)
+
+		this.destroy()
 	}
+
+	update() { }
+
+	destroy() { }
 }
