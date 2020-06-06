@@ -4,6 +4,10 @@ import logo from '../assets/logo.png'
 import player_image from '../assets/images/player_16.png'
 import tiles_image  from '../assets/images/tiles_16.png'
 import pixel_image from '../assets/images/pixel.png'
+import entities_image from '../assets/images/entities.png'
+
+import plop_sound from '../assets/sounds/plop.mp3'
+import jump_sound from '../assets/sounds/jump.mp3'
 
 import test_data from '../assets/levels/test_16.json'
 
@@ -17,8 +21,12 @@ export default class LoaderScene extends Phaser.Scene {
 		this.load.image('logo', logo)
 
 		this.load.spritesheet('player', player_image, { frameWidth: 16, frameHeight: 16 })
+		this.load.spritesheet('entities', entities_image, { frameWidth: 16, frameHeight: 16 })
 		this.load.image('tiles', tiles_image)
 		this.load.image('pixel', pixel_image)
+
+		this.load.audio('plop', plop_sound)
+		this.load.audio('jump', jump_sound)
 
 		this.load.tilemapTiledJSON('test_level', test_data)
 
@@ -37,6 +45,15 @@ export default class LoaderScene extends Phaser.Scene {
 			ease: 'Power2',
 			yoyo: true,
 			loop: -1,
+		})
+
+		this.anims.create( {
+			key: 'soul-idle',
+			frames: this.anims.generateFrameNumbers('entities', {
+				frames: [11, 12]
+			}),
+			frameRate: 10,
+			repeat: -1,
 		})
 	}
 }

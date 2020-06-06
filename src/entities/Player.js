@@ -89,7 +89,7 @@ export default class Player extends Entity {
 		const { width, height } = this.sprite
 
 		this.bodies = {
-			main: Bodies.rectangle(width / 2, height / 2, width - 8, height - 2, ),
+			main: Bodies.rectangle(width / 2, height / 2 + 1, width - 8, height - 4, ),
 		}
 		this.sensors = {
 			bottom: Bodies.rectangle(width / 2, height, width * 0.25, 2, { isSensor: true }),
@@ -132,6 +132,7 @@ export default class Player extends Entity {
 			}
 		}
 		if (this.inputJump.isDown && this.collisions.bottom && this.abilities.jump) {
+			this.ctx.sound.play('jump')
 			this.sprite.setVelocityY(-6)
 			this.abilities.jump = false
 			this.cooldowns.jump = this.ctx.time.addEvent({

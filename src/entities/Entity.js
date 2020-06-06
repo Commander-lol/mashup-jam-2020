@@ -1,3 +1,5 @@
+import { v4 } from 'uuid'
+
 /**
  * @property {Phaser.Scene} ctx
  */
@@ -7,6 +9,7 @@ export default class Entity {
 	 */
 	constructor(context) {
 		this.ctx = context
+		this.eid = v4()
 		context.events.on('update', this.update, this)
 		context.events.once("shutdown", this.destroy, this);
 		context.events.once("destroy", this.destroy, this);

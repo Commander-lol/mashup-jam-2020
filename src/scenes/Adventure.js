@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import Player from '../entities/Player'
+import Soul from '../entities/Soul'
 
 export default class AdventureScene extends Phaser.Scene {
 	constructor() {
@@ -17,6 +18,9 @@ export default class AdventureScene extends Phaser.Scene {
 		this.spawn = map.findObject('spawns', obj => obj.type === 'player_spawn')
 
 		this.player = new Player(this, this.spawn.x, this.spawn.y)
+		this.souls = map.getObjectLayer('souls').objects.map(obj => {
+			return new Soul(this, obj.x, obj.y, obj.properties.value)
+		})
 
 		this.cameras.main.startFollow(this.player.sprite, false, 0.5, 0.5)
 		this.cameras.main.setZoom(4)
