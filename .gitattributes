@@ -4,3 +4,4 @@
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.xcf filter=lfs diff=lfs merge=lfs -text
+*.pes filter=lfs diff=lfs merge=lfs -text

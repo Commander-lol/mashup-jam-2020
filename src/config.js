@@ -14,7 +14,8 @@ export default {
 	physics: {
 		default: 'matter',
 		matter: {
-			// debug: true,
+			enableSleeping: true,
+			debug: true,
 			gravity: {
 				y: 1,
 			},
